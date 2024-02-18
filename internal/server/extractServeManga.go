@@ -107,7 +107,7 @@ func ExtractServeManga(w http.ResponseWriter, r *http.Request) {
 			break
 		}
 	}
-	tmpl := template.Must(template.ParseFiles("web/reader.html"))
+	tmpl := template.Must(template.ParseFS(akuma.Content, "assets/web/reader.html"))
 	err = tmpl.Execute(w, data)
 	if err != nil {
 		log.Fatal(err)

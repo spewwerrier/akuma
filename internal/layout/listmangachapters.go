@@ -34,7 +34,9 @@ func ListMangaChapters(w http.ResponseWriter, r *http.Request) {
 		mangaInformation.URL = append(mangaInformation.URL, i)
 	}
 
-	tmpl := template.Must(template.ParseFiles("web/listMangaChapters.html"))
+	// tmpl := template.Must(template.ParseFiles("web/listMangaChapters.html"))
+
+	tmpl := template.Must(template.ParseFS(akuma.Content, "assets/web/listMangaChapters.html"))
 	err := tmpl.Execute(w, mangaInformation)
 	if err != nil {
 		log.Println(err)

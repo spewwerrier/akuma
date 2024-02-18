@@ -6,6 +6,7 @@ import (
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
+	"github.com/luitel777/akuma/internal/interface/akuma"
 	"github.com/luitel777/akuma/internal/interface/sqlite"
 	"github.com/luitel777/akuma/internal/layout"
 )
@@ -28,7 +29,9 @@ func SetupRoutes() chi.Router {
 	routes.Get("/manga/{hash}", layout.ListMangaChapters)
 	routes.Get("/manga/{hash}/{id}", ExtractServeManga)
 
-	routes.Handle("/static/*", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
+	// routes.Handle("/static/*", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
+	akuma.VerifyEmbed()
+	routes.Handle("/static/*", http.StripPrefix("/static/", http.FileServer(http.FS(akuma.Content))))
 	fmt.Println("finished setting up routes")
 	fmt.Println("serving on port 3333")
 

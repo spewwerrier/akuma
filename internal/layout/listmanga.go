@@ -26,7 +26,7 @@ func ListManga(w http.ResponseWriter, r *http.Request) {
 		inst.Cover = append(inst.Cover, extractThumbnail(hash))
 	}
 
-	tmpl := template.Must(template.ParseFiles("web/list.html"))
+	tmpl := template.Must(template.ParseFS(akuma.Content, "assets/web/list.html"))
 	err := tmpl.Execute(w, inst)
 	if err != nil {
 		log.Fatal(err)
