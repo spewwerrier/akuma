@@ -39,8 +39,8 @@ func unzipCBZ(filePath string, fileName string, pagechan chan string) {
 			continue
 		}
 
-		if buf[0] == 255 && buf[1] == 216 || buf[0] == 137 && buf[1] == 80 {
-			// only checks 2 bytes but this filter outs a lot of non jpeg file
+		if buf[0] == 255 && buf[1] == 216 || buf[0] == 137 && buf[1] == 80 || buf[0] == 82 && buf[1] == 73 {
+			// only checks 2 bytes but this filter outs a lot of non jpeg/png files
 			encoded := base64.StdEncoding.EncodeToString(buf)
 			pagechan <- encoded
 		}
