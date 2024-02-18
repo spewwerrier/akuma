@@ -6,14 +6,16 @@
 </head>
 
 <body>
-  {{ if eq .Next -1}}
-  <a href="./{{.Prev}}">{{.Prev}}</a>
-  {{ else if eq .Prev -1}}
-  <a href="./{{.Next}}">{{.Next}}</a>
-  {{ else }}
-  <a href="./{{.Next}}">{{.Next}}</a>
-  <a href="./{{.Prev}}">{{.Prev}}</a>
-  {{end}}
+  <footer>
+    {{ if eq .Next -1}}
+    <a href="./{{.Prev}}">Prev {{.Prev}}</a>
+    {{ else if eq .Prev -1}}
+    <a href="./{{.Next}}">Next {{.Next}}</a>
+    {{ else }}
+    <a href="./{{.Next}}">Next {{.Next}}</a>
+    <a href="./{{.Prev}}">Prev {{.Prev}}</a>
+    {{end}}
+  </footer>
 </body>
 
 </html>
