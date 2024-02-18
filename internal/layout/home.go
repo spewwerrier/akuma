@@ -19,7 +19,7 @@ func Homepage(w http.ResponseWriter, r *http.Request) {
 		Description: "Read locally archived manga archives",
 	}
 
-	tmpl := template.Must(template.ParseFS(akuma.Content, "assets/web/list.html"))
+	tmpl := template.Must(template.ParseFS(akuma.Content, "assets/web/home.html"))
 	err := tmpl.Execute(w, info)
 	if err != nil {
 		fmt.Print(err)
