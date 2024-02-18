@@ -5,7 +5,10 @@ import (
 	"log"
 )
 
-//go:embed assets/*
+//go:generate rm -rf assets
+//go:generate mkdir assets
+//go:generate cp -r ../../../web ../../../static assets
+//go:embed assets
 var Content embed.FS
 
 func VerifyEmbed() {
