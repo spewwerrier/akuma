@@ -29,9 +29,8 @@ func SetupRoutes() chi.Router {
 	routes.Get("/manga/{hash}", layout.ListMangaChapters)
 	routes.Get("/manga/{hash}/{id}", ExtractServeManga)
 
-	// routes.Handle("/static/*", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 	akuma.VerifyEmbed()
-	routes.Handle("/static/*", http.StripPrefix("/static/", http.FileServer(http.FS(akuma.Content))))
+	routes.Handle("/*", http.FileServerFS(akuma.Content))
 	fmt.Println("finished setting up routes")
 	fmt.Println("serving on port 3333")
 
