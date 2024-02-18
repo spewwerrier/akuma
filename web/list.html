@@ -1,0 +1,22 @@
+<html>
+
+<head>
+  <title>Browse Manga</title>
+  <link rel="stylesheet" href="/static/list.css">
+</head>
+
+<body>
+  <h1>Library</h1>
+  <ul>
+    {{range $index, $name := .Name}}
+    <a href="manga/{{index $.Hash $index}}">
+      <img height="300px" , src="data:image/jpeg;base64,{{index $.Cover $index}}">
+    </a>
+    <li>
+      <a href="manga/{{index $.Hash $index}}">{{$name}}</a><br><br>
+    </li>
+    {{end}}
+  </ul>
+</body>
+
+</html>

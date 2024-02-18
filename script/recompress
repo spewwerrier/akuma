@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+for f in * ; do \
+  mkdir tmp
+  cp -r "$f" tmp/
+  cd tmp
+  unzip "$f"
+  rm -rf "$f"
+  zip -r "$f" *
+  mv "$f" ../
+  cd ..
+  rm -rf tmp ;done

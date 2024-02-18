@@ -1,0 +1,9 @@
+profiling
+=========
+f, _ := os.Create("profile.prof")
+pprof.StartCPUProfile(f)
+// do your stuff
+defer pprof.StopCPUProfile()
+
+~/.go/bin/pprof -http=localhost:9999 akuma profile.prof
+

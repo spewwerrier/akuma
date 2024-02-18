@@ -1,0 +1,19 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="/static/reader.css">
+  <title>{{.Title}}</title>
+</head>
+
+<body>
+  {{ if eq .Next -1}}
+  <a href="./{{.Prev}}">{{.Prev}}</a>
+  {{ else if eq .Prev -1}}
+  <a href="./{{.Next}}">{{.Next}}</a>
+  {{ else }}
+  <a href="./{{.Next}}">{{.Next}}</a>
+  <a href="./{{.Prev}}">{{.Prev}}</a>
+  {{end}}
+</body>
+
+</html>

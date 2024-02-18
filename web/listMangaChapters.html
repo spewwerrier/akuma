@@ -1,0 +1,17 @@
+<html>
+
+<head>
+  <title>{{.Title}}</title>
+  <link rel="stylesheet" href="/static/list.css">
+</head>
+
+<body>
+  <h1>{{.Title}}</h1>
+  <ol>
+    {{range $index, $chaps := .Chapters}}
+    <li><a href="./{{$.Hash}}/{{index $.URL $index}}">{{$chaps}}</a><br></li>
+    {{end}}
+  </ol>
+</body>
+
+</html>
