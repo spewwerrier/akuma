@@ -32,7 +32,7 @@ func SetupRoutes() chi.Router {
 	akuma.VerifyEmbed()
 	routes.Handle("/*", http.FileServerFS(akuma.Content))
 	fmt.Println("finished setting up routes")
-	fmt.Println("serving on port 3333")
+	fmt.Println("serving on port http://localhost:3333")
 
 	return routes
 }

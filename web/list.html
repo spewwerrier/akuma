@@ -7,16 +7,18 @@
 
 <body>
   <h1>Library</h1>
-  <ul>
-    {{range $index, $name := .Name}}
-    <a href="manga/{{index $.Hash $index}}">
-      <img height="300px" , src="data:image/jpeg;base64,{{index $.Cover $index}}">
-    </a>
-    <li>
-      <a href="manga/{{index $.Hash $index}}">{{$name}}</a><br><br>
-    </li>
-    {{end}}
-  </ul>
+  <div class="chapters">
+    <ul>
+      {{range $index, $name := .Name}}
+      <a href="manga/{{index $.Hash $index}}">
+        <img height="300px" , src="data:image/jpeg;base64,{{index $.Cover $index}}">
+        <div>
+          {{$name}}
+        </div>
+      </a>
+      {{end}}
+    </ul>
+  </div>
 </body>
 
 </html>
