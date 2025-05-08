@@ -19,7 +19,7 @@ func GetMangaList() []fs.DirEntry {
 
 // look up manga chapters from their hash
 func GetMangaChapters(mangaName string) []fs.DirEntry {
-	entries, err := os.ReadDir(globals.DIRECTORY + mangaName)
+	entries, err := os.ReadDir(globals.DIRECTORY + "/" + mangaName)
 	if err != nil {
 		log.Println("Error: GetMangaChapters(mangaName string): ", err)
 	}
