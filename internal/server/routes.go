@@ -3,9 +3,11 @@ package server
 import (
 	"fmt"
 	"net/http"
+	"strconv"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
+	globals "github.com/luitel777/akuma/internal"
 	"github.com/luitel777/akuma/internal/interface/akuma"
 	"github.com/luitel777/akuma/internal/interface/sqlite"
 	"github.com/luitel777/akuma/internal/layout"
@@ -32,7 +34,7 @@ func SetupRoutes() chi.Router {
 	akuma.VerifyEmbed()
 	routes.Handle("/*", http.FileServerFS(akuma.Content))
 	fmt.Println("finished setting up routes")
-	fmt.Println("serving on port http://localhost:3333")
+	fmt.Println("serving on port http://localhost:" + strconv.Itoa(globals.PORT))
 
 	return routes
 }

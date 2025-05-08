@@ -13,6 +13,7 @@ import (
 	"time"
 
 	"github.com/go-chi/chi/v5"
+	globals "github.com/luitel777/akuma/internal"
 	"github.com/luitel777/akuma/internal/interface/akuma"
 	"github.com/luitel777/akuma/internal/interface/sqlite"
 )
@@ -81,7 +82,7 @@ func ExtractServeManga(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Println(entries[vol].Name())
 
-	filePath := "manga/" + mangaName + "/" + entries[vol].Name()
+	filePath := globals.DIRECTORY + mangaName + "/" + entries[vol].Name()
 
 	pageChan := make(chan string)
 

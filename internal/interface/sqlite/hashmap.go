@@ -21,7 +21,7 @@ const (
 func ClearHashmap() {
 	db, err := sql.Open("sqlite3", "database/akuma.db")
 	if err != nil {
-		log.Println(err)
+		log.Println("failed to open db", err)
 	}
 	db.Exec("DROP TABLE hashmaps")
 	db.Close()

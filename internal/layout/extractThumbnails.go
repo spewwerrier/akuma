@@ -8,6 +8,7 @@ import (
 	"log"
 	"os"
 
+	globals "github.com/luitel777/akuma/internal"
 	"github.com/luitel777/akuma/internal/interface/sqlite"
 )
 
@@ -26,7 +27,7 @@ put the cover in hash/id on the cache folder
 */
 
 func check_on_cache(hash string) bool {
-	_, err := os.ReadFile("thumbnails/" + hash)
+	_, err := os.ReadFile(globals.HOME + "/.cache/akumathumbnails/" + hash)
 	if err != nil {
 		fmt.Println("generating thumbnails for ", sqlite.RetriveManga(hash, sqlite.NAME))
 		return false
@@ -36,11 +37,11 @@ func check_on_cache(hash string) bool {
 
 func generate_cache(hash string) {
 	dir := sqlite.RetriveManga(hash, sqlite.NAME)
-	entries, err := os.ReadDir("manga/" + dir)
+	entries, err := os.ReadDir(globals.DIRECTORY + dir)
 	if err != nil {
 		log.Println(err)
 	}
-	entry := "manga/" + dir + "/" + entries[0].Name()
+	entry := globals.DIRECTORY + dir + "/" + entries[0].Name()
 
 	reader, err := zip.OpenReader(entry)
 	if err != nil {
@@ -60,11 +61,11 @@ func generate_cache(hash string) {
 	}
 	// encoded := base64.StdEncoding.EncodeToString(buf)
 
-	err = os.MkdirAll("thumbnails", os.ModePerm)
+	err = os.MkdirAll(globals.HOME+"/.cache/akumathumbnails", os.ModePerm)
 	if err != nil {
 		log.Println("error:", err)
 	}
-	err = os.WriteFile("thumbnails/"+hash, buf, 0644)
+	err = os.WriteFile(globals.HOME+"/.cache/akumathumbnails/"+hash, buf, 0644)
 	if err != nil {
 		log.Println("error: ", err)
 	}
@@ -72,7 +73,7 @@ func generate_cache(hash string) {
 }
 
 func retriveFromCache(hash string) string {
-	file, err := os.ReadFile("thumbnails/" + hash)
+	file, err := os.ReadFile(globals.HOME + "/.cache/akumathumbnails/" + hash)
 	if err != nil {
 		log.Println("cannot read thumbnail", err)
 	}

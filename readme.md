@@ -11,11 +11,9 @@ archive_name/
 ```
 
 ```sh
-$ ./x
-$ ./akuma
+$ ./x && ./akuma
 ```
-akuma is a standalone binary but it needs to be in a folder where there is manga folder.
+akuma is a binary for serving your manga and comics
 
-# Plans
-- add toml config system
-- make ui pleasant to look
+akuma -help for more
+

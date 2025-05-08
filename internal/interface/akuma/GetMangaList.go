@@ -4,20 +4,22 @@ import (
 	"io/fs"
 	"log"
 	"os"
+
+	globals "github.com/luitel777/akuma/internal"
 )
 
 // retrive all the manga items in the directory
 func GetMangaList() []fs.DirEntry {
-	files, err := os.ReadDir("manga")
+	files, err := os.ReadDir(globals.DIRECTORY)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalln("there is no manga directory: ", err)
 	}
 	return files
 }
 
 // look up manga chapters from their hash
 func GetMangaChapters(mangaName string) []fs.DirEntry {
-	entries, err := os.ReadDir("manga/" + mangaName)
+	entries, err := os.ReadDir(globals.DIRECTORY + mangaName)
 	if err != nil {
 		log.Println("Error: GetMangaChapters(mangaName string): ", err)
 	}
