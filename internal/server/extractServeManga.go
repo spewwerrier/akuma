@@ -56,6 +56,7 @@ type Property struct {
 
 // /manga/{hash}/{id}
 func ExtractServeManga(w http.ResponseWriter, r *http.Request) {
+	ctx := r.Context()
 	hash := chi.URLParam(r, "hash")
 	volume := chi.URLParam(r, "id")
 
@@ -101,11 +102,17 @@ func ExtractServeManga(w http.ResponseWriter, r *http.Request) {
 		}
 		time.Sleep(100)
 
-		_, err := fmt.Fprintf(w, "<img src=\"data:image/png;base64,%s\">\n", page)
-		if err != nil {
-			log.Println("error writing", err)
-			break
+		select {
+		case <-ctx.Done():
+			return
+		default:
+			_, err := fmt.Fprintf(w, "<img src=\"data:image/png;base64,%s\">\n", page)
+			if err != nil {
+				log.Println("error writing", err)
+				break
+			}
 		}
+
 	}
 	tmpl := template.Must(template.ParseFS(akuma.Content, "assets/web/reader.html"))
 	err = tmpl.Execute(w, data)
