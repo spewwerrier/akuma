@@ -29,6 +29,6 @@ func ListManga(w http.ResponseWriter, r *http.Request) {
 	tmpl := template.Must(template.ParseFS(akuma.Content, "assets/web/list.html"))
 	err := tmpl.Execute(w, inst)
 	if err != nil {
-		log.Fatal(err)
+		log.Println("failed to render listing page: ", err)
 	}
 }
