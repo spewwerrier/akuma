@@ -82,7 +82,7 @@ func ExtractServeManga(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Println(entries[vol].Name())
 
-	filePath := globals.DIRECTORY + mangaName + "/" + entries[vol].Name()
+	filePath := globals.DIRECTORY + "/" + mangaName + "/" + entries[vol].Name()
 
 	pageChan := make(chan string)
 
